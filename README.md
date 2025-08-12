@@ -1,10 +1,8 @@
-Here is the English version of the README.md, revised for an open-source project.
-
-## Shared Renovate Configuration
+# Shared Renovate Configuration
 
 This repository provides a shared Renovate configuration for use across multiple products. The goal is to minimize technical debt by continuously tracking library updates and maintaining the latest dependencies.
 
-### How to Inherit and Use
+## How to Inherit and Use
 
 To use this shared configuration, follow these steps in your repository:
 
@@ -25,9 +23,7 @@ To use this shared configuration, follow these steps in your repository:
 
     Be sure to set `"enabledManagers"` to match the package manager(s) used in your project.
 
------
-
-### Customizing the Configuration
+## Customizing the Configuration
 
 If you need to override the shared settings or add your own rules, simply add the desired configuration options to your `renovate.json` file.
 
