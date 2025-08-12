@@ -1,0 +1,87 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    ":timezone(Asia/Tokyo)",
+    "group:monorepos",
+    "packages:stylelint",
+    ":widenPeerDependencies",
+    ":label(renovate)",
+    ":semanticCommitScopeDisabled",
+    ":configMigration"
+  ],
+  "enabledManagers": ["npm", "gomod", "github-actions", "dockerfile", "terraform"],
+  "schedule": "after 8am and before 5pm every weekday",
+  "npm": {
+    "extends": [
+      ":noUnscheduledUpdates",
+      "npm:unpublishSafe",
+      "helpers:disableTypesNodeMajor"
+    ],
+    "rangeStrategy": "bump",
+    "semanticCommitType": "chore",
+    "separateMinorPatch": true,
+    "packageRules": [
+      {
+        "matchDepTypes": [
+          "devDependencies"
+        ],
+        "matchUpdateTypes": [
+          "patch"
+        ],
+        "automerge": true
+      },
+      {
+        "matchPackageNames": [
+          "cimg/node"
+        ],
+        "matchUpdateTypes": [
+          "major"
+        ],
+        "enabled": false,
+        "description": "Cimg/node has a pattern where you want to test the Node version on the CI, so you don't update the major version."
+      },
+      {
+        "packageNames": [
+          "ua-parser-js"
+        ],
+        "allowedVersions": "<2.0.0"
+      }
+    ]
+  },
+  "go": {
+    "rangeStrategy": "bump",
+    "semanticCommitType": "chore",
+    "separateMinorPatch": true,
+    "packageRules": [
+      {
+        "matchUpdateTypes": [
+          "patch"
+        ],
+        "automerge": true
+      }
+    ]
+  },
+  "github-actions": {
+    "semanticCommitType": "chore",
+    "packageRules": [
+      {
+        "matchUpdateTypes": [
+          "patch"
+        ],
+        "automerge": true
+      }
+    ]
+  },
+  "terraform": {
+    "semanticCommitType": "chore",
+    "separateMinorPatch": true,
+    "packageRules": [
+      {
+        "matchUpdateTypes": [
+          "patch"
+        ],
+        "automerge": true
+      }
+    ]
+  }
+}
