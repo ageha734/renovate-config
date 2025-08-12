@@ -1,0 +1,21 @@
+name: "[CI] Renovate"
+
+on:
+    pull_request:
+    push:
+        branches: [ master ]
+
+jobs:
+    ci:
+        runs-on: ubuntu-24.04
+        steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4.2.2
+        
+        - name: Setup Node.js
+          uses: actions/setup-node@v4.4.0
+          with:
+            node-version: 18.4.0
+
+        - name: Validate renovate config
+          run: RENOVATE_CONFIG_FILE=default.json npx --package renovate -c 'renovate-config-validator'
